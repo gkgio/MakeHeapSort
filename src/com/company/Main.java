@@ -10,7 +10,7 @@ public class Main {
         Random random = new Random();
         for (int i = 0; i < 20; i++) {
             array[i] = random.nextInt(200) + 1;
-
+            System.out.print(String.format("%d  ",array[i]));
         }
         System.out.println();
         HeapSort heapSort = new HeapSort();
