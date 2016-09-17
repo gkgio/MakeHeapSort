@@ -4,11 +4,10 @@ package com.company;
  * Created by Георгий on 15.09.2016.
  */
 public class HeapSort {
-    public int arrayLength;
-    public int position;
 
     public int[] myHeapSort(int[] array) {
-        arrayLength = array.length;
+        int arrayLength = array.length;
+        int position;
         //first stem in HeapSort algorithm
         for (int i = arrayLength / 2 - 1; i >= 0; i--) {
             position = drop(array, i, arrayLength);
@@ -20,9 +19,7 @@ public class HeapSort {
         }
         //second stem in HeapSort algorithm
         while (arrayLength > 1) {
-            int tmp = array[0];
-            array[0] = array[arrayLength - 1];
-            array[arrayLength - 1] = tmp;
+            swap(array,0,arrayLength - 1);
             arrayLength--;
             position = drop(array, 0, arrayLength);
             if (position == -1) continue;
@@ -38,27 +35,29 @@ public class HeapSort {
         if(arrayLength==1)return -1;
         if (arrayLength - 1 < i * 2 + 2) {
             if (array[i] > array[i * 2 + 1]) {
-                int tmp = array[i];
-                array[i] = array[i * 2 + 1];
-                array[i * 2 + 1] = tmp;
+                swap(array,i,i*2+1);
                 return i * 2 + 1;
             }
         } else {
             if (array[i * 2 + 1] < array[i * 2 + 2]) {
                 if (array[i] > array[i * 2 + 1]) {
-                    int tmp = array[i];
-                    array[i] = array[i * 2 + 1];
-                    array[i * 2 + 1] = tmp;
+                    swap(array,i,i*2+1);
                     return i * 2 + 1;
                 }
             }
             else if(array[i]>array[i*2+2]){
-                int tmp = array[i];
-                array[i] = array[i * 2 + 2];
-                array[i * 2 + 2] = tmp;
+                swap(array,i,i*2+2);
                 return i * 2 + 2;
             }
         }
         return -1;
+    }
+
+    private void swap(int[] array, int left, int right){
+        if(left!=right){
+            int tmp=array[right];
+            array[right]=array[left];
+            array[left]=tmp;
+        }
     }
 }
